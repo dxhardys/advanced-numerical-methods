@@ -3,6 +3,7 @@
 
 # build dir
 build-debug/
+build/
 
 # Prerequisites
 *.d
