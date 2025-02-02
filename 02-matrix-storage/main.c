@@ -73,7 +73,7 @@ void solve_jacobi_CSR(double* values, int* col_indices, int* row_ptr, int nnz, i
     double max = 0.0 ;
     for (int i = 0; i < size; i++)
     {
-        double diff = fabs(tmp[i]) - fabs(X[i]) ;
+        double diff = fabs(tmp[i] - X[i]) ;
         if(diff > max)
             max = diff ;
         
@@ -96,6 +96,11 @@ void solve_gauss_seidel_CSR(double* values, int* col_indices, int* row_ptr, int 
 
     while(k < n_iter){
     printf("\e[32mIteration %d\e[0m\n",k) ;
+
+    for (int i = 0; i < size; i++) {
+            tmp[i] = X[i];
+        }
+        
     for (int i = 0; i < size ; i++)
     {
         int start = row_ptr[i] ;
@@ -117,21 +122,19 @@ void solve_gauss_seidel_CSR(double* values, int* col_indices, int* row_ptr, int 
     }
 
     double max = 0.0 ;
-    /*
     for (int i = 0; i < size; i++)
     {
-        double diff = fabs(tmp[i]) - fabs(X[i]) ;
+        double diff = fabs(X[i] - tmp[i])  ;
         if(diff > max)
             max = diff ;
-        
     }
+
     if(max < epsilon)
         break ;
-    */
+    
     k++;
     
     }
-
 }
 
 
